@@ -77,6 +77,6 @@ def close_sql_connection():
     # Close the connection to the PostgreSQL
     db_conn.close()
 
-# database_conn()
+database_conn()
 
 
