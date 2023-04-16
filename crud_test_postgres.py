@@ -22,11 +22,12 @@ def edit_record():
 def delete_record():
     name = input("Enter name for delete: ")
     postgres_conn.database_conn()
-    query = "SELECT * FROM test WHERE name = %s"
-    postgres_conn.POSTGRES_CURSOR.execute(query, (name))
-    #postgres_conn.POSTGRES_CURSOR.execute("select * from test where name = %s", (str(name)))
-    variable = postgres_conn.POSTGRES_CURSOR.fetchone()
-    print(variable)
+    postgres_conn.POSTGRES_CURSOR.execute(f"DELETE FROM test WHERE name = '{name}';")
+    postgres_conn.POSTGRES_CONNECTION.commit()
+    print(f"\nSuccessfully deleted user {name}")
+    #postgres_conn.POSTGRES_CURSOR.execute(f"select * from test where name = '{name}';")
+    #variable = postgres_conn.POSTGRES_CURSOR.fetchone()
+    #print(variable)
 
 
 
