@@ -2,9 +2,27 @@
 
 import postgres_conn
 
+
+def crud_action():
+    user_choice = input("\nSelect any of the following operations: \n1.Create New Record\n2.Delete Existing Record\n3.Edit a record\n4.Print the records\n")
+
+    if user_choice == "1":
+        create_record()
+    elif user_choice == "2":
+        delete_record()
+    elif user_choice == "3":
+        edit_record()
+    elif user_choice == "4":
+        read_record()
+    else:
+        print("Invalid choice!\n")
+        crud_action()
+
+
+
 def create_record():
-    id = input("please enter ID: ")
-    name = input("please enter NAME: ")
+    id = input("\nPlease enter ID: ")
+    name = input("\nPlease enter NAME: ")
     postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute('INSERT INTO test (id, name) VALUES (%s, %s)', (id, name))
     postgres_conn.POSTGRES_CONNECTION.commit()
@@ -20,7 +38,7 @@ def edit_record():
 
 
 def delete_record():
-    name = input("Enter name for delete: ")
+    name = input("\nEnter name for delete: ")
     postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute(f"DELETE FROM test WHERE name = '{name}';")
     postgres_conn.POSTGRES_CONNECTION.commit()
@@ -32,4 +50,5 @@ def delete_record():
 
 
 #create_record()
-delete_record()
+#delete_record()
+crud_action()
