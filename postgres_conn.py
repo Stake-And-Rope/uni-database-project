@@ -45,9 +45,9 @@ def database_conn(verbose = False):
                 )
         cursor = db_conn.cursor()
         print("PostgreSQL database version: ")
-#        cursor.execute("SELECT version()")
-#        db_version = cursor.fetchone()
-#        print(db_version)
+        cursor.execute("SELECT version()")
+        db_version = cursor.fetchone()
+        print(db_version)
     except (Exception, Error) as error:
         print("Error in connectin the PostgreSQL Database", error)
 
