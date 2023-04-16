@@ -3,8 +3,10 @@
 import postgres_conn
 
 def create_record():
+    id = input("please enter ID: ")
+    name = input("please enter NAME: ")
     postgres_conn.database_conn()
-    postgres_conn.POSTGRES_CURSOR.execute("INSERT INTO test (id, name) VALUES (%s, %s)", ("001100", "Maria"))
+    postgres_conn.POSTGRES_CURSOR.execute('INSERT INTO test (id, name) VALUES (%s, %s)', (id, name))
     postgres_conn.POSTGRES_CONNECTION.commit()
 
 
@@ -18,7 +20,15 @@ def edit_record():
 
 
 def delete_record():
-    pass
+    name = input("Enter name for delete: ")
+    postgres_conn.database_conn()
+    query = "SELECT * FROM test WHERE name = %s"
+    postgres_conn.POSTGRES_CURSOR.execute(query, (name))
+    #postgres_conn.POSTGRES_CURSOR.execute("select * from test where name = %s", (str(name)))
+    variable = postgres_conn.POSTGRES_CURSOR.fetchone()
+    print(variable)
 
 
-create_record()
+
+#create_record()
+delete_record()
