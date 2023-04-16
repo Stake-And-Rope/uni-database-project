@@ -20,7 +20,7 @@ def database_conn(verbose = False):
 
     global POSTGRES_CURSOR
     global POSTGRES_CONNECTION
-    # This function with create SSH Tunnel to the Linux Linode Server with custom credentials. 
+    # This function with create SSH Tunnel to the Linux Linode Server with custom credentials.
     # Before using the connector disable the SSH Passphrase on your local machine with `ssh-keygen -p` and set new blank passphrase. <-- To be fixed with more reliable solution
 
     if verbose:
@@ -41,7 +41,7 @@ def database_conn(verbose = False):
         print("SSH connection not established!\n")
 
 
-    # Connect to PostgreSQL database with custom credentials. 
+    # Connect to PostgreSQL database with custom credentials.
     # Simple query is executed to display PostgreSQL vesrion.
     db_conn = psycopg2.connect(
             user = str(POSTGRES_USERNAME),
@@ -77,6 +77,6 @@ def close_sql_connection():
     # Close the connection to the PostgreSQL
     db_conn.close()
 
-# database_conn()
+database_conn()
 
 
