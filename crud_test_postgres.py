@@ -18,16 +18,12 @@ def crud_action():
         print("Invalid choice!\n")
         crud_action()
 
-
-
 def create_record():
     id = input("\nPlease enter ID: ")
     name = input("\nPlease enter NAME: ")
     postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute('INSERT INTO test (id, name) VALUES (%s, %s)', (id, name))
     postgres_conn.POSTGRES_CONNECTION.commit()
-
-
 
 def read_table():
     postgres_conn.database_conn()
@@ -36,12 +32,17 @@ def read_table():
     for student_info in result:
         print(f"ID: {student_info[0]} -- Name: {student_info[1]}")
 
-
-
-
 def edit_record():
-    pass
-
+    student_id = input("\nEnter the ID of existing student: ")
+    postgres_conn.database_conn()
+    postgres_conn.POSTGRES_CURSOR.execute(f"SELECT * FROM test WHERE id = '{student_id}'")
+    result = postgres_conn.POSTGRES_CURSOR.fetchone()
+    new_name = input("\nEnter the new name: ")
+    postgres_conn.POSTGRES_CURSOR.execute(f"UPDATE test SET name = '{new_name}' WHERE id = '{student_id}'")
+    postgres_conn.POSTGRES_CONNECTION.commit()
+    postgres_conn.POSTGRES_CURSOR.execute(f"SELECT * FROM test WHERE name = '{new_name}' AND id = '{student_id}'")
+    result = postgres_conn.POSTGRES_CURSOR.fetchone()
+    print(f"Student ID: {result[0]} -- Student Name: {result[1]}")
 
 def delete_record():
     name = input("\nEnter name for delete: ")
@@ -52,8 +53,6 @@ def delete_record():
     #postgres_conn.POSTGRES_CURSOR.execute(f"select * from test where name = '{name}';")
     #variable = postgres_conn.POSTGRES_CURSOR.fetchone()
     #print(variable)
-
-
 
 #create_record()
 #delete_record()
