@@ -4,6 +4,8 @@
 import argparse
 from PyInquirer import prompt
 from prompt_toolkit.validation import Validator, ValidationError
+import sys
+import custom_style
 
 #class MainApp(Validator):
 
@@ -18,7 +20,7 @@ main_menu = [
 
 
 def main():
-    answers = prompt(main_menu)
+    answers = prompt(main_menu, style = custom_style.style)
     if answers.get("main_menu") == "Login":
         print("I will Login")
     elif answers.get("main_menu") == "Register":
@@ -31,6 +33,7 @@ def main():
         print("I will help you")
     elif answers.get("main_menu") == "Quit":
         print("Goodbye!")
+        sys.exit()
 
 
 if __name__ == "__main__":

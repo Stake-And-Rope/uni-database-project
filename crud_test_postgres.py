@@ -56,4 +56,4 @@ def delete_record():
 
 #create_record()
 #delete_record()
-crud_action()
+#crud_action()
