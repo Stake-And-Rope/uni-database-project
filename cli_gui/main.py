@@ -5,7 +5,7 @@ import argparse
 from PyInquirer import prompt
 from prompt_toolkit.validation import Validator, ValidationError
 import sys
-import custom_style
+import custom_style, login
 
 #class MainApp(Validator):
 
@@ -13,7 +13,7 @@ main_menu = [
     {
         'type' : 'list',
         'name' : 'main_menu',
-        'message' : 'Welcone to Uni Project Database',
+        'message' : 'Welcome to Uni Project Database',
         'choices' : ["Login", "Register", "Reset Password", "Contact", "Help", "Quit"]
     }
 ]
@@ -22,7 +22,7 @@ main_menu = [
 def main():
     answers = prompt(main_menu, style = custom_style.style)
     if answers.get("main_menu") == "Login":
-        print("I will Login")
+        login.login()
     elif answers.get("main_menu") == "Register":
         print("I will create new accounn")
     elif answers.get("main_menu") == "Reset Password":
@@ -32,7 +32,7 @@ def main():
     elif answers.get("main_menu") == "Help":
         print("I will help you")
     elif answers.get("main_menu") == "Quit":
-        print("Goodbye!")
+        print(f"\nGoodbye!")
         sys.exit()
 
 

@@ -4,7 +4,7 @@ import postgres_conn
 
 
 def crud_action():
-    user_choice = input("\nSelect any of the following operations: \n1.Create New Record\n2.Delete Existing Record\n3.Edit a record\n4.Print the entire table\n")
+    user_choice = input("\nSelect any of the following operations: \n1.Create New Record\n2.Delete Existing Record\n3.Edit a record\n4.Print the entire table\n\n")
 
     if user_choice == "1":
         create_record()
@@ -26,7 +26,7 @@ def create_record():
     postgres_conn.POSTGRES_CONNECTION.commit()
 
 def read_table():
-    postgres_conn.database_conn()
+    #postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute(f"SELECT * FROM test")
     result = postgres_conn.POSTGRES_CURSOR.fetchall()
     for student_info in result:
