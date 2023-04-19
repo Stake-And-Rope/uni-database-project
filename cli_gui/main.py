@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 
-import argparse
+#import argparse
 from PyInquirer import prompt
-from prompt_toolkit.validation import Validator, ValidationError
+#from prompt_toolkit.validation import Validator, ValidationError
 import sys
 import custom_style, login
 
