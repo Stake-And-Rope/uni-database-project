@@ -21,7 +21,7 @@ def crud_action():
 def create_record():
     id = input("\nPlease enter ID: ")
     name = input("\nPlease enter NAME: ")
-    postgres_conn.database_conn()
+    #postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute('INSERT INTO test (id, name) VALUES (%s, %s)', (id, name))
     postgres_conn.POSTGRES_CONNECTION.commit()
 
@@ -34,7 +34,7 @@ def read_table():
 
 def edit_record():
     student_id = input("\nEnter the ID of existing student: ")
-    postgres_conn.database_conn()
+    #postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute(f"SELECT * FROM test WHERE id = '{student_id}'")
     result = postgres_conn.POSTGRES_CURSOR.fetchone()
     new_name = input("\nEnter the new name: ")
@@ -46,7 +46,7 @@ def edit_record():
 
 def delete_record():
     name = input("\nEnter name for delete: ")
-    postgres_conn.database_conn()
+    #postgres_conn.database_conn()
     postgres_conn.POSTGRES_CURSOR.execute(f"DELETE FROM test WHERE name = '{name}';")
     postgres_conn.POSTGRES_CONNECTION.commit()
     print(f"\nSuccessfully deleted user {name}")

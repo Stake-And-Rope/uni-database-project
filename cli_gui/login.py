@@ -6,7 +6,7 @@ import crud_test_postgres, postgres_conn
 
 from PyInquirer import prompt
 from prompt_toolkit.validation import Validator, ValidationError
-import main, custom_style
+import main, main_menu, custom_style
 
 
 login_menu = [
@@ -24,11 +24,16 @@ login_menu = [
 def login():
     answers = prompt(login_menu, style = custom_style.style)
     if answers.get("login_menu") == "Login":
-        print(f"\nEnter your Server and Database Credentials\n")
+        print(f"\nEnter your Server and Database Credentials:\n")
         postgres_conn.database_conn()
         crud_test_postgres.crud_action()
+        if crud_test_postgres.crud_action() == True:
+            print("Connected")
+        else:
+            print("Not connected")
+            main.main()
     elif answers.get("login_menu") == "Go back to Main Menu":
-        print("I will go back to the Main Menu")
+        #print("I will go back to the Main Menu")
         main.main()
 
 
