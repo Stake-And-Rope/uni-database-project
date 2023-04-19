@@ -7,13 +7,12 @@ from prompt_toolkit.validation import Validator, ValidationError
 import sys
 import custom_style, login
 
-#class MainApp(Validator):
 
 main_menu = [
     {
         'type' : 'list',
         'name' : 'main_menu',
-        'message' : 'Welcome to Uni Project Database',
+        'message' : 'Welcome to Uni Project Database\nLogin to your account',
         'choices' : ["Login", "Contact", "Help", "Quit"]
     }
 ]
