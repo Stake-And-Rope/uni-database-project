@@ -1,6 +1,7 @@
-#!/usr/bin/python3
+import logging
+
 import psycopg2
-from psycopg2 import Error
+import sshtunnel
 from sshtunnel import SSHTunnelForwarder
 from getpass import getpass
 
@@ -78,5 +79,6 @@ def close_sql_connection():
     db_conn.close()
 
 database_conn()
+
 
 
